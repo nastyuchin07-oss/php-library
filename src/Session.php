@@ -14,6 +14,7 @@ class Session
     public static function login(int $userId): void
     {
         self::start();
+        session_regenerate_id(true);
         $_SESSION['user_id'] = $userId;
     }
 
@@ -27,7 +28,7 @@ class Session
     public static function logout(): void
     {
         self::start();
-        unset($_SESSION['user_id']);
+        $_SESSION = [];
         session_destroy();
     }
 }
